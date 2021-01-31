@@ -31,7 +31,7 @@
 </table>
 <script>
     $(function () {
-        $.get('/api/notes').done(function (notes) {
+        $.get('/notes').done(function (notes) {
             notes.forEach(function (note) {
                 $('tbody').append(`
                     <tr>
