@@ -1,5 +1,7 @@
 package ru.bvt.notesengine.domain;
 
+import ru.bvt.notesengine.rest.dto.NoteFullDto;
+
 import javax.persistence.*;
 
 @Entity
@@ -28,6 +30,13 @@ public class Note {
         this.text = text;
         this.extId = 0;
         this.author = "";
+    }
+
+    public Note(NoteVO fullDto) {
+        this.text = fullDto.getText();
+        this.extId = 0;
+        this.author = "";
+        // TODO: дополнить конструктор всеми полями из DTO
     }
 
     public int getId() {
@@ -85,4 +94,6 @@ public class Note {
     public void setNoteBookId(int noteBookId) {
         this.noteBookId = noteBookId;
     }
+
+
 }

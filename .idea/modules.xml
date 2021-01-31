@@ -3,7 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/notesengine/notesengine.iml" filepath="$PROJECT_DIR$/notesengine/notesengine.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/springp.iml" filepath="$PROJECT_DIR$/.idea/springp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tgnotesagent/tgnotesagent.iml" filepath="$PROJECT_DIR$/tgnotesagent/tgnotesagent.iml" />
     </modules>
   </component>
 </project>

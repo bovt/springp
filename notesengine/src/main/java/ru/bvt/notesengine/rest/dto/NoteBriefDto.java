@@ -14,7 +14,7 @@ import ru.bvt.notesengine.domain.Note;
 /**
  * DTO that represents brief view of Note
  */
-@SuppressWarnings("all")
+
 public class NoteBriefDto {
 
     private int id = -1;
@@ -25,7 +25,7 @@ public class NoteBriefDto {
 
     public NoteBriefDto(int id, String text) {
         this.id = id;
-        this.text = text.substring(0,10);
+        this.text = text.substring(0, 10);
     }
 
     public int getId() {

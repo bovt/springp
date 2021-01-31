@@ -16,7 +16,6 @@ public class NotesEngineApplication {
         System.out.println("Hello world");
     }
 
-    @SuppressWarnings("SpringJavaAutowiredFieldsWarningInspection")
     @Autowired
     private NoteRepository repository;
 

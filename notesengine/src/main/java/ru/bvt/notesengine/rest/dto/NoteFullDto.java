@@ -10,59 +10,20 @@
 package ru.bvt.notesengine.rest.dto;
 
 import ru.bvt.notesengine.domain.Note;
+import ru.bvt.notesengine.domain.NoteVO;
 
 /**
  * DTO that represents full view of Note
  */
-@SuppressWarnings("all")
-public class NoteFullDto {
+public class NoteFullDto extends NoteVO {
 
     private int id = -1;
-    private String author;
-    private String text;
-    private String timestamp;
 
-    public NoteFullDto() {
-    }
-
-    public NoteFullDto(int id, String text) {
-        this.id = id;
-        this.text = text;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(String text) {
-        this.author = author;
-    }
-
-    public String getTimestamp() {
-        return timestamp;
-    }
-
-    public void setTimestamp(String text) {
-        this.timestamp = timestamp;
-    }
-
-    public String getText() {
-        return text;
-    }
-
-    public void setText(String text) {
-        this.text = text;
+    public NoteFullDto(int extId, String author, String text, String timestamp) {
+        super(extId, author, text, timestamp);
     }
 
     public static NoteFullDto toDto(Note note) {
-        return new NoteFullDto(note.getId(), note.getText());
+        return new NoteFullDto(note.getId(), note.getAuthor(), note.getText(), note.getTimestamp());
     }
 }
