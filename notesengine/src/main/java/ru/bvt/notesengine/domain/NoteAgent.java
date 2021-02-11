@@ -1,46 +1,29 @@
 package ru.bvt.notesengine.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+
+import lombok.*;
 
 @Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Table(name = "note_agent")
 public class NoteAgent {
 
-    @Id
-    @GeneratedValue
-    private int id;
-    private String agentKey;
+    @Id // без стратегии генерации, т.к. используется как логин + задаётся в data.sql и нужен в смежных генерациях
+    @Column(name = "id", nullable = false, unique = true)
+    private long id; // login при аутентификации на notesengine
+
+
+    @Column(name = "api_key", nullable = false, unique = false)
+    private String apiKey; // пароль при аутентификации на notesengine
+
+    @Column(name = "name", nullable = false, unique = true)
     private String name;
 
-    public NoteAgent() {
-    }
+    @ManyToOne(targetEntity = NoteBook.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "notebook_id")
+    private NoteBook noteBookId;
 
-    public NoteAgent(String text) {
-        this.name = text;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getAgentKey() {
-        return agentKey;
-    }
-
-    public void setAgentKey(String agentKey) {
-        this.agentKey = agentKey;
-    }
 }

@@ -1,14 +1,15 @@
 package ru.bvt.tgnotesagent.service;
 
+import feign.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.objects.Update;
-import ru.bvt.tgnotesagent.feign.NoteControllerProxy;
+import ru.bvt.tgnotesagent.feign.NoteControllerBotEdition;
 import ru.bvt.tgnotesagent.model.NoteVO;
+import org.springframework.context.annotation.Bean;
 
-//@Component
 @Service
 public class TgNotesBotAgentServiceSimple extends TelegramLongPollingBot implements TgNotesBotAgentService {
     // Аннотация @Value позволяет задавать значение полю путем считывания из application.yaml
@@ -19,13 +20,15 @@ public class TgNotesBotAgentServiceSimple extends TelegramLongPollingBot impleme
     private String botToken;
 
     @Autowired
-    private NoteControllerProxy feignProxy;
+    private NoteControllerBotEdition noteControllerBotEdition;
 
     @Override
     public void onUpdateReceived(Update update) {
         //      try {
         System.out.println(update.getMessage().getText());
-        feignProxy.createOrSaveNote(new NoteVO(14, "1", update.getMessage().getText(), "2"));
+        noteControllerBotEdition.createOrSaveNote(new NoteVO(update.getMessage().getText()));
+//  TODO: добавить команды телеграм, сделать хэндлеры к ним
+//
         //           } catch (TelegramApiException e) {
         //           e.printStackTrace();
         //       }

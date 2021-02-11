@@ -10,20 +10,28 @@
 package ru.bvt.notesengine.rest.dto;
 
 import ru.bvt.notesengine.domain.Note;
-import ru.bvt.notesengine.domain.NoteVO;
+import lombok.*;
+
+import javax.persistence.Entity;
 
 /**
  * DTO that represents full view of Note
  */
-public class NoteFullDto extends NoteVO {
 
-    private int id = -1;
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class NoteFullDto {
 
-    public NoteFullDto(int extId, String author, String text, String timestamp) {
-        super(extId, author, text, timestamp);
+    private long id = -1;
+
+    private String text;
+
+    NoteFullDto(String text) {
+        this.text = text;
     }
 
     public static NoteFullDto toDto(Note note) {
-        return new NoteFullDto(note.getId(), note.getAuthor(), note.getText(), note.getTimestamp());
+        return new NoteFullDto(note.getText());
     }
 }

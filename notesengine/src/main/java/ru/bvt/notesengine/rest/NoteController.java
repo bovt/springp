@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.*;
 import ru.bvt.notesengine.domain.*;
 import ru.bvt.notesengine.rest.dto.NoteFullDto;
 import ru.bvt.notesengine.repository.NoteRepository;
+import ru.bvt.notesengine.service.NoteServiceSimple;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -14,21 +15,22 @@ public class NoteController {
 
     private final NoteRepository repository;
 
+    private final NoteServiceSimple service;
+
     @Autowired
-    public NoteController(NoteRepository repository) {
+    public NoteController(NoteRepository repository, NoteServiceSimple service) {
         this.repository = repository;
+        this.service = service;
     }
 
+
     @PostMapping("/notes")
-    public void createOrSaveNote(@RequestBody NoteVO newNoteVO) {
-        System.out.println(newNoteVO.getText());
-        repository.save(new Note(newNoteVO));
+    public void createOrSaveNote(@RequestBody NoteFullDto newNoteDTO) {
+        service.createOrSaveNote(newNoteDTO);
     }
-// TODO: наладить модель - VO, DTO. Единый подход
 
     @GetMapping("/notes")
     public List<NoteFullDto> getAllNotes() {
-        return repository.findAll().stream().map(NoteFullDto::toDto)
-                .collect(Collectors.toList());
+        return service.getAllNotes();
     }
 }

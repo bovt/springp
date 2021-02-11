@@ -9,40 +9,20 @@
  */
 package ru.bvt.notesengine.rest.dto;
 
+import lombok.*;
 import ru.bvt.notesengine.domain.Note;
 
 /**
  * DTO that represents brief view of Note
  */
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class NoteBriefDto {
 
-    private int id = -1;
+    private long id = -1;
     private String text;
-
-    public NoteBriefDto() {
-    }
-
-    public NoteBriefDto(int id, String text) {
-        this.id = id;
-        this.text = text.substring(0, 10);
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getText() {
-        return text;
-    }
-
-    public void setText(String text) {
-        this.text = text;
-    }
 
     public static NoteBriefDto toDto(Note note) {
         return new NoteBriefDto(note.getId(), note.getText());

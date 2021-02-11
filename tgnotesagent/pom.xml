@@ -10,11 +10,13 @@
 	</parent>
 	<groupId>ru.bvt</groupId>
 	<artifactId>tgnotesagent</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>37.1.2-SNAPSHOT</version>
 	<name>tgnotesagent</name>
 	<description>Telegram notes agent</description>
 	<properties>
 		<java.version>11</java.version>
+		<telegrambots.version>5.0.1</telegrambots.version>
+		<openfeign.version>2.2.6.RELEASE</openfeign.version>
 	</properties>
 
 	<dependencies>
@@ -25,13 +27,19 @@
 		<dependency>
 			<groupId>org.telegram</groupId>
 			<artifactId>telegrambots-spring-boot-starter</artifactId>
-			<version>5.0.1</version>
+			<version>${telegrambots.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-openfeign</artifactId>
-			<version>2.2.6.RELEASE</version>
+			<version>${openfeign.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<optional>true</optional>
+		</dependency>
+
 	</dependencies>
 
 	<build>
